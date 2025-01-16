@@ -35,5 +35,5 @@ jobs:
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: andreyLobo0/PipelineAutomationTestAPI
-          event-type: micro-3-deploy-completed
+          event-type: deploy-completed
           client-payload: '{"service": "microservice-3", "status": "success"}'
