@@ -1,0 +1,39 @@
+name: Microservice 3 - Build and Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run actions/checkout
+        uses: actions/checkout@v4
+
+      - name: Run actions/setup-node
+        run: echo "Run actions/setup-node"
+
+      - name: Install Dependencies
+        run: echo "Install Dependencies"
+
+      - name: Typecheck + Lint + Test Coverage
+        run: echo "Typecheck + Lint + Test Coverage"
+
+      - name: Configure AWS Credentils
+        run: echo "Configure AWS Credentils"
+
+      - name: Migrate TypeORM
+        run: echo "Migrate TypeORM"
+
+      - name: Servelss Deploy
+        run: echo "Servelss Deploy"
+
+      - name: Notify API Tests Repository
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          repository: andreyLobo0/PipelineAutomationTestAPI
+          event-type: micro-3-deploy-completed
+          client-payload: '{"service": "microservice-3", "status": "success"}'
